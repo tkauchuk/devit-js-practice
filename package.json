@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "name": "js",
+  "version": "1.0.0",
+  "description": "repo for js-practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkauchuk/devit-js-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tkauchuk/devit-js-practice/issues"
+  },
+  "homepage": "https://github.com/tkauchuk/devit-js-practice#readme",
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0"
+  }
+}
