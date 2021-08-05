@@ -3,6 +3,7 @@ export default class Queue {
         this._concurrency = concurrency;
         this._queue = [];
         this._pending = 0;
+        // pending can be an empty error
         this._onResolved = null;
     }
 
