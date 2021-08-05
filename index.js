@@ -3,16 +3,33 @@
 // method add(call)
 // use 100 requests with queue
 
-async function request() {
-    console.log('time here request called')
-    return await new Promise(
-        (resolve) => setTimeout(
-            () => {
-                // TODO: добавить текущее время
-                console.log(`time here result`);
-                resolve();
-            },
-            3000 // add random time from 3 to 10 sek
-        )
-    )
+import 'isomorphic-fetch';
+import Queue from './queue.js'
+
+async function makeRequest(index) {
+    console.log(index, new Date().toTimeString(), 'request called');
+
+
+    // TODO: return Promise with timout random time resolve
+    return fetch(`https://jsonplaceholder.typicode.com/todos/${index}`)
+        .then((response) => {
+            console.log(index, new Date().toTimeString(), 'Response achieved')
+            return response.json()
+        })
 }
+
+const queueOfRequests = new Queue();
+const requestsCount = 100;
+
+for (let i = 0; i < requestsCount; i++) {
+    queueOfRequests.add(() => makeRequest(i), i);
+
+    // add possibility to handle each response
+}
+
+queueOfRequests.resolved((results) => {
+    console.log("queue resolved", results);
+})
+
+
+// console.log(await queueOfRequests.done());
